@@ -14,8 +14,7 @@ Installation
 
 4. run ``python manage.py collectstatic``
 
-
-5. Customize admin template (see django docs - https://docs.djangoproject.com/en/dev/ref/contrib/admin/#overriding-admin-templates ). In change_form.html after ``{{ media }}`` add::
+5. Customize admin template (see django docs - https://docs.djangoproject.com/en/dev/ref/contrib/admin/#overriding-admin-templates ). In change_form.html after ``\{\{ media \}\}`` add::
 
 	<script src="/tiny_mce/tiny_mce.js"></script>
 	<script src="/static/owlmedia/tiny_mce_init.js"></script>
