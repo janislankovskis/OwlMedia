@@ -5,15 +5,15 @@ Installation
 
 0. Download .zip ar .tar.gz from Github and copy archive content to Django project folder or anywhere where django can find it.
 1. In project settings.py add ``'owlmedia'`` to ``INSTALLED_APPS``.
-2. In urls.py add 
-	``
+2. Configure static / media files ( see django docs - https://docs.djangoproject.com/en/1.3/howto/static-files/ ).
+3. In urls.py add::
+	
 		url(r'^admin/owlmedia/', include('owlmedia.urls')),
-	``
 
-2. run python manage.py collectstatic
+4. run ``python manage.py collectstatic``
 
 
-3. in change_form.html after ``{{ media }}`` add::
+5. Customize admin template (see django docs - https://docs.djangoproject.com/en/dev/ref/contrib/admin/#overriding-admin-templates ). In change_form.html after ``{{ media }}`` add::
 
 	<script src="/tiny_mce/tiny_mce.js"></script>
 	<script src="/static/owlmedia/tiny_mce_init.js"></script>
