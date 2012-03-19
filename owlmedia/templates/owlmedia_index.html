@@ -1,0 +1,74 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>OwlPy MediaInsert TinyMCE Plugin</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/static/owlmedia/owlmedia.css">
+  <script type="text/javascript" src="/tiny_mce/tiny_mce_popup.js"></script>
+</head>
+<body onload="tinyMCEPopup.executeOnLoad('init();')">
+
+<div class="wrap">
+<div class="menu clearfix"><a {% if view == "upload" %}class="opened" {% endif %}href="{%url owlmedia.views.index %}">Image</a><a {% if view == "embed" %}class="opened" {% endif %}href="{% url owlmedia.views.embed %}">EMBED</a></div>
+
+
+{% if view == 'upload' %}
+<h1>Uplaod image</h1>
+<div class="container">
+	<div class="formPlaceHolder">
+		{% if insertfile == None %}
+		<form method="post" action="{% url owlmedia.views.index %}" accept-charset="utf-8" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<div class="buttons"><button type="submit">Save</button></div>
+		</form>
+		{% else %}
+			<div class="over">
+				<img src="{{ MEDIA_URL }}uploads/{{ insertfile }}" />
+				<input type="hidden" name="value" class="value" value='<img src="{{ MEDIA_URL }}uploads/{{ insertfile }}" alt="{{ insertfile }}" />' />
+			</div>
+			<div class="buttons">
+			<a href="#" class="button insert insertHtml">insert</a> or <a href="{{ owlmedia.views.index }}">cancel</a>
+			</div>
+
+		{% endif %}
+	</div>
+</div>
+{% endif %}
+
+{% if view == "embed" %}
+	<h1>Insert Embed code</h1>
+	<textarea name="return" cols="10" rows="7" class="value"></textarea>
+
+	<div class="buttons">
+		<a href="#" class="button insert insertHtml">insert</a>
+	</div>
+
+{% endif %}
+
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+
+var OwlMediaDialogue = {
+    init : function () {
+        // Here goes your code for setting your custom things onLoad.
+        $('.insertHtml').on('click', this.insertHtml);
+    },
+    insertHtml : function () {
+        tinyMCEPopup.editor.execCommand('mceInsertContent', false, $('.value').val());
+        tinyMCEPopup.close();
+    }
+}
+
+tinyMCEPopup.onInit.add(OwlMediaDialogue.init, OwlMediaDialogue);
+
+</script>
+</body>
+</html>

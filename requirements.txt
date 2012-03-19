@@ -1,0 +1,3 @@
+Django - https://www.djangoproject.com/
+PIL (Python Image Library) - http://www.pythonware.com/products/pil/
+TinyMCE 3.x - http://www.tinymce.com/
