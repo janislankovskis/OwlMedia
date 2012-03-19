@@ -1,5 +1,7 @@
 OwlMedia is TynyMCE plugin / Django App. It enables you to upload images into TinyMCE editor.
 
+![OwlMedia Screenshot](https://github.com/janislankovskis/owlmedia/raw/master/screenshot.png)
+
 Installation
 ------------
 
